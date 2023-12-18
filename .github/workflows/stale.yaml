@@ -14,7 +14,8 @@
 # ============================================================================
 
 name: Close inactive issues
-on: workflow_dispatch:
+on:
+  workflow_dispatch
   # schedule:
   #   - cron: "30 1 * * *"
 
