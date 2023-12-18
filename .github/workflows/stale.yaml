@@ -48,7 +48,7 @@ jobs:
           labels-to-remove-when-unstale: 'stale,stalled,stat:awaiting response'
          
           #override stale to stalled for issue
-          stale-issue-label: 'Stalled'
+          stale-issue-label: 'stale'
       - uses: actions/checkout@v3
       - uses: actions/github-script@v6
         with:
