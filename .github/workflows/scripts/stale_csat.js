@@ -12,7 +12,7 @@ module.exports = async ({ github, context }) => {
 
   let date = new Date();
   let totalMilliSeconds = date.getTime();
-  let minutes = 0;  // Change it to 10 .............
+  let minutes = 10;  // Change it to 10 .............
   let millisecondsToSubtract = minutes * 60 * 1000;
   let closeTime = totalMilliSeconds-millisecondsToSubtract;
   let newDate = new Date(closeTime);
@@ -25,6 +25,7 @@ module.exports = async ({ github, context }) => {
     since:ISOCloseTime
   });
  let ISSUESLIST = closeTimeIssues.data;
+ console.log(`Fetching all the closed within ${minutes} minutes.`)
  for(let i=0;i<ISSUESLIST.length;i++){ 
   if(ISSUESLIST[i].node_id && ISSUESLIST[i].node_id.indexOf("PR") !=-1)
      continue;
