@@ -1,19 +1,10 @@
-# Copyright 2023 The TensorFlow Authors. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ============================================================================
+# This workflow alerts and then closes the stale issues after specific time
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
 
-name: Close inactive issues
+
+name: 'Stale and Close issues'
 on:
   workflow_dispatch:
  # issue_comment:
@@ -26,44 +17,41 @@ permissions:
   pull-requests: write
 
 jobs:
-  close-issues:
-    # Don't do this in forks
+  stale:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
     steps:
-      - name: Awaiting response issues
-        uses: actions/stale@v7
+      - uses: actions/stale@v7
         with:
-          #Comma separated list of labels that can be assigned to issues to exclude them from being marked as stale
-          exempt-issue-labels: 'override-stale'
-          #Comma separated list of labels that can be assigned to PRs to exclude them from being marked as stale
-          exempt-pr-labels: "override-stale"
-          #Limit the No. of API calls in one run default value is 30.
-          operations-per-run: 1000
-          #Prevent to remove stale label when PRs or issues are updated.
-          remove-stale-when-updated: false
-          days-before-issue-stale: 0
-          days-before-issue-close: 0
-          stale-issue-label: "stale"
-          # reason for closed the issue default value is not_planned
+          
+          # close-as-complete: true 
           close-issue-reason: completed
-          only-labels: "stat:awaiting response"
-          stale-issue-message: > 
-            This issue is stale because it has been open for 7 days with no activity.
-            It will be closed if no further activity occurs. Thank you.
-          close-issue-message: >
-            This issue was closed because it has been inactive for 7 days since being marked as stale.
-            Please reopen if you'd like to work on this further.
-          days-before-pr-stale: 14
-          days-before-pr-close: 14
-          stale-pr-message: "This PR is stale because it has been open for 14 days with no activity. It will be closed if no further activity occurs. Thank you."
-          close-pr-message: "This PR was closed because it has been inactive for 14 days since being marked as stale. Please reopen if you'd like to work on this further."
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: actions/checkout@v3
-    - uses: actions/github-script@v6
-      with:
-        script: |
-          const script = require('./\.github/workflows/scripts/stale_csat.js')
-          script({github, context})   
+         
+         
+          # comment on issues if not active for more then 14 days.
+          stale-issue-message: 'This issue has been automatically marked as stale because it has no recent activity. It will be closed if no further activity occurs. Thank you.'
+        
+          #comment on issues if stale for more then 14 days. 
+          close-issue-message: "Closing as stale. Please reopen if you'd like to work on this further"
+              
+          # Number of days of inactivity before a stale issue is closed
+          days-before-issue-close: 0
+       
+          # Number of days of inactivity before an issue Request becomes stale
+          days-before-issue-stale: 0
+         
+          exempt-issue-labels: 'override stale'
+ 
+        
+
+          #Check for label to stale or close the issue/PR
+          any-of-labels: 'stat:awaiting response'
+          labels-to-remove-when-unstale: 'stale,stalled,stat:awaiting response'
+         
+          #override stale to stalled for issue
+          stale-issue-label: 'Stalled'
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./\.github/workflows/scripts/issue-pr-closed.js')
+            script({github, context})
