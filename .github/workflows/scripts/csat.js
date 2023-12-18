@@ -12,11 +12,11 @@ module.exports = async ({ github, context }) => {
             if (CONSTENT_VALUES.MODULE.CSAT.CSAT_LABELS.includes(label.name)) {
                 console.log(`label-${label.name}, posting CSAT survey for issue =${issue}`);       
              
-                const yesCsat = `<a href="${baseUrl + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +
+                const yesCsat = `<a href="${base_url + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +
                     CONSTANT_VALUES.MODULE.CSAT.YES +
                     CONSTANT_VALUES.MODULE.CSAT.ISSUEID_PARAM + issue}"> ${CONSTANT_VALUES.MODULE.CSAT.YES}</a>`;
 
-                const noCsat = `<a href="${baseUrl + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +
+                const noCsat = `<a href="${base_url + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +
                     CONSTANT_VALUES.MODULE.CSAT.NO +
                     CONSTANT_VALUES.MODULE.CSAT.ISSUEID_PARAM + issue}"> ${CONSTANT_VALUES.MODULE.CSAT.NO}</a>`;
                 const comment = CONSTANT_VALUES.MODULE.CSAT.MSG + '\n' + yesCsat + '\n' +
