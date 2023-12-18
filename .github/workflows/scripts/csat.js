@@ -9,7 +9,7 @@ module.exports = async ({ github, context }) => {
     let base_url = CONSTENT_VALUES.MODULE.CSAT.BASE_URL;
      //Loop over all ths label present in issue and check if specific label is present for survey link.
     for (const label of context.payload.issue.labels) {
-            if (CONSTENT_VALUES.MODULE.CSAT.CONSTENT_VALUES.CSAT_LABELS.includes(label.name)) {
+            if (CONSTENT_VALUES.MODULE.CSAT.CSAT_LABELS.includes(label.name)) {
                 console.log(`label-${label.name}, posting CSAT survey for issue =${issue}`);       
              
                 const yesCsat = `<a href="${baseUrl + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +

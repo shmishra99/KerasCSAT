@@ -1,21 +1,4 @@
 let CONSTENT_VALUES = {
-    GLOBALS: {
-        LABELS: {
-            STALE: "stale",
-            AWAITINGRES: "stat:awaiting response",
-            BUG: 'type:bug',
-            BUG_INSTALL: 'type:build/install',
-            TYPE_SUPPORT: 'type:support',
-            TYPE_OTHER: 'type:others',
-            TYPE_DOCS_BUG: 'type:docs-bug',
-            TYPE_PERFORMANCE: 'type:performance'
-        },
-        STATE: {
-            CLOSED: "closed"
-        },
-        TENSORFLOW_CORE_REPO: 'https://github.com/tensorflow/tensorflow/pull',
-        PR_TRIGGER_REPO: 'testRep,keras'
-    },
     MODULE: {
         CSAT: {
             YES:'Yes',
