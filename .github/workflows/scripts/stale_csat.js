@@ -12,7 +12,7 @@ module.exports = async ({ github, context }) => {
 
   let date = new Date();
   let totalMilliSeconds = date.getTime();
-  let minutes = 20;
+  let minutes = 0;  // Change it to 10 .............
   let millisecondsToSubtract = minutes * 60 * 1000;
   let closeTime = totalMilliSeconds-millisecondsToSubtract;
   let newDate = new Date(closeTime);
