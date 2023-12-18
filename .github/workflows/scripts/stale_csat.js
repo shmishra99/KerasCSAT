@@ -1,6 +1,6 @@
 
 const csat = require('./CSAT.js');
-const constant = require("./constant.js");
+const CONSTANT = require("./constant.js");
 /*
 When stale bot closes the issue this function will 
 invoke and post CSAT link on the issue.
@@ -37,7 +37,7 @@ module.exports = async ({ github, context }) => {
   let noOfComments = comments.data.length;
   let lastComment = comments.data[noOfComments-1];
   let strCom = JSON.stringify(lastComment);
-  if(strCom.indexOf(constant.MODULE.CSAT.MSG) == -1){
+  if(strCom.indexOf(CONSTANT.MODULE.CSAT.MSG) == -1){
        context.payload.issue = {};
        context.payload.issue.number = ISSUESLIST[i].number;
        context.payload.issue.labels = ISSUESLIST[i].labels;
