@@ -26,6 +26,7 @@ module.exports = async ({ github, context }) => {
   });
  let ISSUESLIST = closeTimeIssues.data;
  console.log(`Fetching all the closed within ${minutes} minutes.`)
+ console.log(ISSUESLIST)
  for(let i=0;i<ISSUESLIST.length;i++){ 
   if(ISSUESLIST[i].node_id && ISSUESLIST[i].node_id.indexOf("PR") !=-1)
      continue;
