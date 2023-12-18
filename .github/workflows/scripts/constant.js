@@ -1,4 +1,4 @@
-let CONSTENT_VALUES = {
+let CONSTANT_VALUES = {
     MODULE: {
         CSAT: {
             YES:'Yes',
@@ -11,4 +11,4 @@ let CONSTENT_VALUES = {
         }
     }
 }
-module.exports = CONSTENT_VALUES
+module.exports = CONSTANT_VALUES
