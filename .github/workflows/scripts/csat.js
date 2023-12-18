@@ -11,7 +11,6 @@ module.exports = async ({ github, context }) => {
     for (const label of context.payload.issue.labels) {
             if (CONSTANT_VALUES.MODULE.CSAT.CSAT_LABELS.includes(label.name)) {
                 console.log(`label-${label.name}, posting CSAT survey for issue =${issue}`);       
-             
                 const yesCsat = `<a href="${base_url + CONSTANT_VALUES.MODULE.CSAT.SATISFACTION_PARAM +
                     CONSTANT_VALUES.MODULE.CSAT.YES +
                     CONSTANT_VALUES.MODULE.CSAT.ISSUEID_PARAM + issue}"> ${CONSTANT_VALUES.MODULE.CSAT.YES}</a>`;
