@@ -1,5 +1,5 @@
 
-const csat = require('./CSAT.js');
+const csat = require('./csat.js');
 const CONSTANT = require("./constant.js");
 /*
 When stale bot closes the issue this function will 
