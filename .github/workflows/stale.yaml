@@ -49,9 +49,9 @@ jobs:
          
           #override stale to stalled for issue
           stale-issue-label: 'stale'
-      # - uses: actions/checkout@v3
-      # - uses: actions/github-script@v6
-      #   with:
-      #     script: |
-      #       const script = require('./\.github/workflows/scripts/issue-pr-closed.js')
-      #       script({github, context})
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./\.github/workflows/scripts/issue-pr-closed.js')
+            script({github, context})
