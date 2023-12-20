@@ -1,4 +1,9 @@
-name: Close inactive issues
+# This workflow alerts and then closes the stale issues after specific time
+# You can adjust the behavior by modifying this file.
+# For more information, see:
+# https://github.com/actions/stale
+
+name: 'Close inactive issues'
 on:
   workflow_dispatch:
   schedule:
@@ -53,3 +58,58 @@ jobs:
             const script = require('./\.github/workflows/scripts/issue-pr-closed.js')
             script({github, context})
       
+
+
+
+
+name: 'Stale and Close issues'
+on:
+  workflow_dispatch:
+ # issue_comment:
+ #   types:
+ #     - created
+    
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v7
+        with:
+          
+          # close-as-complete: true 
+          close-issue-reason: completed
+         
+         
+          # comment on issues if not active for more then 14 days.
+          stale-issue-message: 'This issue has been automatically marked as stale because it has no recent activity. It will be closed if no further activity occurs. Thank you.'
+        
+          #comment on issues if stale for more then 14 days. 
+          close-issue-message: "Closing as stale. Please reopen if you'd like to work on this further"
+              
+          # Number of days of inactivity before a stale issue is closed
+          days-before-issue-close: 0
+       
+          # Number of days of inactivity before an issue Request becomes stale
+          days-before-issue-stale: 0
+         
+          exempt-issue-labels: 'override stale'
+ 
+        
+
+          #Check for label to stale or close the issue/PR
+          any-of-labels: 'stat:awaiting response'
+          labels-to-remove-when-unstale: 'stale,stalled,stat:awaiting response'
+         
+          #override stale to stalled for issue
+          stale-issue-label: 'stale'
+      - uses: actions/checkout@v3
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            const script = require('./\.github/workflows/scripts/stale_csat.js')
+            script({github, context})
