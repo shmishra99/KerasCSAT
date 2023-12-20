@@ -27,7 +27,7 @@ module.exports = async ({ github, context }) => {
                     repo: context.repo.repo,
                     body: comment
                 });
-                return 
+                return;
             }
         }
-    }
+    };

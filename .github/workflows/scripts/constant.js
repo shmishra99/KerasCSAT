@@ -7,8 +7,8 @@ let CONSTANT_VALUES = {
             SATISFACTION_PARAM: 'entry.492125872=',
             ISSUEID_PARAM: '&entry.243948740=',
             MSG: 'Are you satisfied with the resolution of your issue?',
-            CSAT_LABELS: ['type:bug', 'type:build/install', 'type:support', 'type:others', 'type:docs-bug', 'type:performance']
+            CSAT_LABELS: ['type:bug', 'type:build/install', 'type:support', 'type:others', 'type:docs-bug', 'type:performance', 'type:feature']
         }
     }
-}
-module.exports = CONSTANT_VALUES
+  };
+  module.exports = CONSTANT_VALUES;

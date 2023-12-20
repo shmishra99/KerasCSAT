@@ -4,7 +4,7 @@ const CONSTANT = require("./constant.js");
 /*
 When stale bot closes the issue this function will 
 invoke and post CSAT link on the issue.
-This function will fetch all the issues closed within 20 minutes and
+This function will fetch all the issues closed within 10 minutes and
 post the survey link if survey link is not posted already.
 */
 
@@ -26,8 +26,8 @@ module.exports = async ({ github, context }) => {
     since:ISOCloseTime
   });
  let ISSUESLIST = closeTimeIssues.data;
- console.log(`Fetching all the closed within ${minutes} minutes.`)
- console.log(ISSUESLIST)
+ console.log(`Fetching all the closed within ${minutes} minutes.`);
+ console.log(ISSUESLIST);
  for(let i=0;i<ISSUESLIST.length;i++){ 
   if(ISSUESLIST[i].node_id && ISSUESLIST[i].node_id.indexOf("PR") !=-1)
      continue;
@@ -50,4 +50,4 @@ module.exports = async ({ github, context }) => {
        csat({github, context});
   }
  }
-}
+};
