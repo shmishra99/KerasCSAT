@@ -12,11 +12,12 @@ module.exports = async ({ github, context }) => {
 
   let date = new Date();
   let totalMilliSeconds = date.getTime();
-  let minutes = 10;  // Change it to 10 .............
+  let minutes = 10;
   let millisecondsToSubtract = minutes * 60 * 1000;
   let closeTime = totalMilliSeconds-millisecondsToSubtract;
   let newDate = new Date(closeTime);
   let ISOCloseTime = newDate.toISOString();
+  // Fetch all the issue closed with in 10 mins. 
   let closeTimeIssues  = await github.rest.issues.listForRepo({
     owner: context.repo.owner,
     repo: context.repo.repo,
@@ -31,6 +32,7 @@ module.exports = async ({ github, context }) => {
   if(ISSUESLIST[i].node_id && ISSUESLIST[i].node_id.indexOf("PR") !=-1)
      continue;
    
+  // Fetch last comments for the issues.   
   let comments = await github.rest.issues.listComments({
     owner: context.repo.owner,
     repo: context.repo.repo,
