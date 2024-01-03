@@ -6,6 +6,7 @@ post survey link in closed issue.
 */
 module.exports = async ({ github, context }) => {
     const issue = context.payload.issue.html_url;
+    console.log(CONSTANT_VALUES)
     let base_url = CONSTANT_VALUES.MODULE.CSAT.BASE_URL;
      //Loop over all ths label present in issue and check if specific label is present for survey link.
     for (const label of context.payload.issue.labels) {
